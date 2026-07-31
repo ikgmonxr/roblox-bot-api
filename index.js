@@ -25,7 +25,7 @@ app.post('/users/add', (req, res) => {
     const { userId, adminSecret } = req.body;
     
     // Opcional: Una contraseña simple para que nadie más pueda añadir usuarios
-    if (adminSecret !== "MI_CLAVE_SECRETA_123") {
+    if (adminSecret !== "MTUzMjUzNDY1NDcyMzQyNDQ0OA.GrE-OC.7IqfTRsvRMh-viIAc0VhRPaYStJb7C9RGEcv2g") {
         return res.status(403).json({ error: "No autorizado" });
     }
 
@@ -41,7 +41,7 @@ app.post('/users/add', (req, res) => {
 app.post('/users/remove', (req, res) => {
     const { userId, adminSecret } = req.body;
 
-    if (adminSecret !== "MI_CLAVE_SECRETA_123") {
+    if (adminSecret !== "MTUzMjUzNDY1NDcyMzQyNDQ0OA.GrE-OC.7IqfTRsvRMh-viIAc0VhRPaYStJb7C9RGEcv2g") {
         return res.status(403).json({ error: "No autorizado" });
     }
 
