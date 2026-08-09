@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postulaciones - Ikgonavi Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Encabezado -->
+    <header class="bg-slate-900 border-b border-slate-800 py-6 text-center shadow-lg">
+        <h1 class="text-3xl font-extrabold tracking-wider text-indigo-400">IKGONAVI <span class="text-white">HUB</span></h1>
+        <p class="text-slate-400 mt-1 text-sm">Portal Oficial de Postulaciones</p>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-4 py-10 max-w-3xl flex-grow">
+        
+        <!-- Pestañas de Selección -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="switchTab('mod')" id="btn-mod" class="px-6 py-3 rounded-xl font-semibold bg-indigo-600 text-white transition shadow-md hover:bg-indigo-500 flex items-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-shield-halved"></i> Moderador
+            </button>
+            <button onclick="switchTab('dev')" id="btn-dev" class="px-6 py-3 rounded-xl font-semibold bg-slate-900 border border-slate-800 text-slate-300 transition shadow-md hover:bg-slate-800 flex items-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-code"></i> Developer
+            </button>
+        </div>
+
+        <!-- Notificación de Estado -->
+        <div id="status-message" class="hidden mb-6 p-4 rounded-xl text-center text-sm font-medium"></div>
+
+        <!-- Formulario de Moderador -->
+        <section id="form-mod" class="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-2xl font-bold mb-2 text-indigo-300 flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i> Postulación a Moderador
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">Ayúdanos a mantener un ambiente seguro, ordenado y activo en la comunidad.</p>
+            
+            <form id="mod-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Nombre / Alias</label>
+                    <input type="text" id="mod-name" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Tu nombre o apodo">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Usuario de Discord</label>
+                    <input type="text" id="mod-discord" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Ej. usuario#0000 o @usuario">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Edad</label>
+                    <input type="number" id="mod-age" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Tu edad actual">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">¿Tienes experiencia previa como moderador?</label>
+                    <textarea id="mod-exp" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Menciona comunidades, servidores o proyectos..."></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">¿Por qué quieres ser moderador y qué aportarías?</label>
+                    <textarea id="mod-why" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Cuéntanos tus motivaciones..."></textarea>
+                </div>
+                <button type="submit" id="btn-submit-mod" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition shadow-lg cursor-pointer">Enviar Postulación</button>
+            </form>
+        </section>
+
+        <!-- Formulario de Developer -->
+        <section id="form-dev" class="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl hidden">
+            <h2 class="text-2xl font-bold mb-2 text-indigo-300 flex items-center gap-2">
+                <i class="fa-solid fa-code"></i> Postulación a Developer
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">Demuestra tus habilidades técnicas y contribuye al código, scripts o sistemas de Ikgonavi Hub.</p>
+            
+            <form id="dev-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Nombre / Alias</label>
+                    <input type="text" id="dev-name" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Tu nombre o apodo">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Usuario de Discord</label>
+                    <input type="text" id="dev-discord" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Ej. usuario#0000 o @usuario">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Lenguajes y Tecnologías que dominas</label>
+                    <input type="text" id="dev-tech" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Ej. Luau, C#, Python, JavaScript...">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Enlace a tu Portfolio o GitHub</label>
+                    <input type="url" id="dev-portfolio" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="https://github.com/tu-usuario">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Cuéntanos sobre un proyecto técnico destacado</label>
+                    <textarea id="dev-project" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" placeholder="Describe qué hiciste y qué herramientas usaste..."></textarea>
+                </div>
+                <button type="submit" id="btn-submit-dev" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition shadow-lg cursor-pointer">Enviar Postulación</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 text-center text-slate-500 text-xs">
+        &copy; 2026 Ikgonavi Hub. Todos los derechos reservados.
+    </footer>
+
+    <!-- Lógica JavaScript y Webhook -->
+    <script>
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1535828749285855283/P_BbQNqzxPW2EZe19mM3rHuH0n6XNc0bvEWNZQRCPvlHMlCoTLSHsubS3LhYh6EYDl87";
+
+        function switchTab(type) {
+            const modForm = document.getElementById('form-mod');
+            const devForm = document.getElementById('form-dev');
+            const btnMod = document.getElementById('btn-mod');
+            const btnDev = document.getElementById('btn-dev');
+            hideStatus();
+
+            if (type === 'mod') {
+                modForm.classList.remove('hidden');
+                devForm.classList.add('hidden');
+                btnMod.className = "px-6 py-3 rounded-xl font-semibold bg-indigo-600 text-white transition shadow-md hover:bg-indigo-500 flex items-center gap-2 cursor-pointer";
+                btnDev.className = "px-6 py-3 rounded-xl font-semibold bg-slate-900 border border-slate-800 text-slate-300 transition shadow-md hover:bg-slate-800 flex items-center gap-2 cursor-pointer";
+            } else {
+                devForm.classList.remove('hidden');
+                modForm.classList.add('hidden');
+                btnDev.className = "px-6 py-3 rounded-xl font-semibold bg-indigo-600 text-white transition shadow-md hover:bg-indigo-500 flex items-center gap-2 cursor-pointer";
+                btnMod.className = "px-6 py-3 rounded-xl font-semibold bg-slate-900 border border-slate-800 text-slate-300 transition shadow-md hover:bg-slate-800 flex items-center gap-2 cursor-pointer";
+            }
+        }
+
+        function showStatus(message, success) {
+            const statusBox = document.getElementById('status-message');
+            statusBox.textContent = message;
+            statusBox.className = `mb-6 p-4 rounded-xl text-center text-sm font-medium ${success ? 'bg-emerald-950 border border-emerald-800 text-emerald-300' : 'bg-rose-950 border border-rose-800 text-rose-300'}`;
+            statusBox.classList.remove('hidden');
+        }
+
+        function hideStatus() {
+            document.getElementById('status-message').classList.add('hidden');
+        }
+
+        // Enviar Postulación de Moderador
+        document.getElementById('mod-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-mod');
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+
+            const payload = {
+                embeds: [{
+                    title: "🛡️ Nueva Postulación a Moderador",
+                    color: 6316128,
+                    fields: [
+                        { name: "Nombre / Alias", value: document.getElementById('mod-name').value, inline: true },
+                        { name: "Discord", value: document.getElementById('mod-discord').value, inline: true },
+                        { name: "Edad", value: document.getElementById('mod-age').value, inline: true },
+                        { name: "Experiencia Previa", value: document.getElementById('mod-exp').value, inline: false },
+                        { name: "Motivación y Aportes", value: document.getElementById('mod-why').value, inline: false }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    showStatus("¡Postulación enviada con éxito! Gracias por postularte a Ikgonavi Hub.", true);
+                    this.reset();
+                } else {
+                    showStatus("Hubo un error al enviar la postulación. Inténtalo de nuevo.", false);
+                }
+            } catch (error) {
+                showStatus("Error de red al conectar con Discord.", false);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Enviar Postulación";
+            }
+        });
+
+        // Enviar Postulación de Developer
+        document.getElementById('dev-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-dev');
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+
+            const payload = {
+                embeds: [{
+                    title: "💻 Nueva Postulación a Developer",
+                    color: 5814783,
+                    fields: [
+                        { name: "Nombre / Alias", value: document.getElementById('dev-name').value, inline: true },
+                        { name: "Discord", value: document.getElementById('dev-discord').value, inline: true },
+                        { name: "Tecnologías / Lenguajes", value: document.getElementById('dev-tech').value, inline: false },
+                        { name: "Portfolio / GitHub", value: document.getElementById('dev-portfolio').value, inline: false },
+                        { name: "Proyecto Destacado", value: document.getElementById('dev-project').value, inline: false }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    showStatus("¡Postulación enviada con éxito! Gracias por postularte a Ikgonavi Hub.", true);
+                    this.reset();
+                } else {
+                    showStatus("Hubo un error al enviar la postulación. Inténtalo de nuevo.", false);
+                }
+            } catch (error) {
+                showStatus("Error de red al conectar con Discord.", false);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Enviar Postulación";
+            }
+        });
+    </script>
+</body>
+</html>
